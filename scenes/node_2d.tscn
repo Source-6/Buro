@@ -125,7 +125,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hh0fu"]
-size = Vector2(509, 274.5)
+size = Vector2(509, 349.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifa78"]
 size = Vector2(1587, 797)
@@ -231,10 +231,10 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/GuyCharacter2D"]
-position = Vector2(0, -384.25)
+position = Vector2(0, -346.75)
 shape = SubResource("RectangleShape2D_hh0fu")
 
-[node name="Timer" type="Timer" parent="CanvasLayer/GuyCharacter2D"]
+[node name="MugTimer" type="Timer" parent="CanvasLayer/GuyCharacter2D"]
 wait_time = 3.0
 
 [node name="secondpanel" type="TextureRect" parent="CanvasLayer"]
@@ -252,8 +252,7 @@ grow_vertical = 0
 texture = ExtResource("3_j7wrs")
 
 [node name="FirstPanelArea2D" type="Area2D" parent="CanvasLayer"]
-visible = false
-position = Vector2(-1, 273)
+position = Vector2(-12, 361)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/FirstPanelArea2D"]
 position = Vector2(783.5, 412.5)
@@ -267,7 +266,7 @@ offset_bottom = 395.5
 texture = ExtResource("5_j7wrs")
 
 [node name="MugArea2D" type="Area2D" parent="CanvasLayer"]
-position = Vector2(1121, 847)
+position = Vector2(1152, 953)
 script = ExtResource("7_fws66")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MugArea2D"]
@@ -294,7 +293,7 @@ libraries = {
 autoplay = "RESET"
 
 [node name="PaperPlaneArea2D" type="Area2D" parent="CanvasLayer"]
-position = Vector2(724.06, 950)
+position = Vector2(719, 976)
 script = ExtResource("8_ifa78")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/PaperPlaneArea2D"]
@@ -315,6 +314,6 @@ scale = Vector2(2, 2)
 metadata/_edit_use_anchors_ = true
 
 [connection signal="input_event" from="CanvasLayer/GuyCharacter2D" to="CanvasLayer/GuyCharacter2D" method="_on_input_event"]
-[connection signal="timeout" from="CanvasLayer/GuyCharacter2D/Timer" to="CanvasLayer/GuyCharacter2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/GuyCharacter2D/MugTimer" to="CanvasLayer/GuyCharacter2D" method="_on_timer_timeout"]
 [connection signal="input_event" from="CanvasLayer/MugArea2D" to="CanvasLayer/MugArea2D" method="_on_input_event"]
 [connection signal="input_event" from="CanvasLayer/PaperPlaneArea2D" to="CanvasLayer/PaperPlaneArea2D" method="_on_input_event"]
