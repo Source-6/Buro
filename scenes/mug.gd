@@ -4,11 +4,11 @@ extends Area2D
 
 
 
-@export var can_be_used : bool
+@export var mug_is_selected : bool
 @export var throwed : bool
 
 func _ready() -> void:
-	can_be_used = false
+	mug_is_selected = false
 	throwed = false
 
 func _process(delta: float) -> void:
@@ -18,13 +18,12 @@ func _process(delta: float) -> void:
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("select"):
 		animation_player.play("scaleClicked")
-		can_be_used = true
-		print("clicked")
-		#get_viewport().set_input_as_handled()
+		mug_is_selected = true
+
 
 
 func throw_stuff()-> void:
-	if can_be_used:
+	if mug_is_selected:
 		print("throw") 
 		throwed = true
-		can_be_used = false
+		mug_is_selected = false

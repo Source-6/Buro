@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cpex67fwvqxk3"]
+[gd_scene load_steps=37 format=3 uid="uid://cpex67fwvqxk3"]
 
 [ext_resource type="Texture2D" uid="uid://cd5goc5x5qq5y" path="res://assets/drawings/Background.png" id="1_4vge2"]
 [ext_resource type="Texture2D" uid="uid://csqxeicahnxfo" path="res://assets/drawings/guy.png" id="2_04qyp"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://6jf3qjydauav" path="res://assets/drawings/MugHitting2.png" id="6_diulx"]
 [ext_resource type="Script" uid="uid://ct7066tqm44cu" path="res://scenes/mug.gd" id="7_fws66"]
 [ext_resource type="Texture2D" uid="uid://bfthuesplj6vy" path="res://assets/drawings/MugHitting3.png" id="7_nuk1v"]
-[ext_resource type="Script" uid="uid://bkmynsknhgo6x" path="res://scenes/paper_plane_area_2d.gd" id="8_ifa78"]
+[ext_resource type="Script" uid="uid://bkmynsknhgo6x" path="res://scenes/paper_plane.gd" id="8_ifa78"]
 [ext_resource type="Texture2D" uid="uid://ddnbxeit7fjw4" path="res://assets/drawings/MugHitting4.png" id="8_l0qat"]
 [ext_resource type="Texture2D" uid="uid://cawinitsraij0" path="res://assets/drawings/MugHitting5.png" id="9_wpu3o"]
 [ext_resource type="Texture2D" uid="uid://ds55up6w02t1i" path="res://assets/drawings/PaperPlane1.png" id="9_xtx0q"]
@@ -19,11 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://cnclwbl0qgkr6" path="res://assets/drawings/MugHitting6.png" id="10_g3arh"]
 [ext_resource type="Texture2D" uid="uid://cewr4esdcwapq" path="res://assets/drawings/MugHitting7.png" id="11_unr0g"]
 [ext_resource type="Texture2D" uid="uid://d4etgxdn3v10f" path="res://assets/drawings/PaperPlane3.png" id="11_x63s8"]
-[ext_resource type="Texture2D" uid="uid://b4qwwhxnhcmmy" path="res://assets/drawings/PaperPlane4.png" id="12_0q20i"]
 [ext_resource type="Texture2D" uid="uid://bcedgxslo5lnw" path="res://assets/drawings/MugHitting8.png" id="12_jt3n0"]
 [ext_resource type="Texture2D" uid="uid://14hkt6yqh0nd" path="res://assets/drawings/MugHitting9.png" id="13_7pfoh"]
-[ext_resource type="Texture2D" uid="uid://2jxnq3cyswku" path="res://assets/drawings/PaperPlane5.png" id="13_qv8l0"]
-[ext_resource type="Texture2D" uid="uid://cs8bjn5m21xcc" path="res://assets/drawings/PaperPlane6.png" id="14_k6u5g"]
 [ext_resource type="Texture2D" uid="uid://bq6nk7nvbtfcr" path="res://assets/drawings/MugHitting10.png" id="14_mchk4"]
 [ext_resource type="Texture2D" uid="uid://g2kmfk5w4hd8" path="res://assets/drawings/MugHitting11.png" id="15_gmqbl"]
 
@@ -185,17 +182,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_x63s8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_0q20i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_qv8l0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_k6u5g")
 }],
-"loop": true,
+"loop": false,
 "name": &"folding",
 "speed": 5.0
 }]
@@ -243,16 +231,16 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1472.0
-offset_top = -588.0
-offset_right = 132.0
-offset_bottom = 220.0
+offset_left = -1455.0
+offset_top = -576.0
+offset_right = 149.0
+offset_bottom = 232.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("3_j7wrs")
 
 [node name="FirstPanelArea2D" type="Area2D" parent="CanvasLayer"]
-position = Vector2(-12, 361)
+position = Vector2(-146, 368)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/FirstPanelArea2D"]
 position = Vector2(783.5, 412.5)
@@ -266,7 +254,7 @@ offset_bottom = 395.5
 texture = ExtResource("5_j7wrs")
 
 [node name="MugArea2D" type="Area2D" parent="CanvasLayer"]
-position = Vector2(1152, 953)
+position = Vector2(1015, 934)
 script = ExtResource("7_fws66")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MugArea2D"]
