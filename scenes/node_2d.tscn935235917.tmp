@@ -1,0 +1,198 @@
+[gd_scene load_steps=18 format=3 uid="uid://cpex67fwvqxk3"]
+
+[ext_resource type="Texture2D" uid="uid://cd5goc5x5qq5y" path="res://assets/drawings/Background.png" id="1_4vge2"]
+[ext_resource type="Texture2D" uid="uid://csqxeicahnxfo" path="res://assets/drawings/guy.png" id="2_04qyp"]
+[ext_resource type="Script" uid="uid://cy13d1t2u4ml5" path="res://scenes/guy.gd" id="3_04qyp"]
+[ext_resource type="Texture2D" uid="uid://brcskew0oy60j" path="res://assets/drawings/foreground.png" id="3_j7wrs"]
+[ext_resource type="Texture2D" uid="uid://dcl641caot51x" path="res://assets/drawings/mug.png" id="4_fws66"]
+[ext_resource type="Texture2D" uid="uid://bcpn18htc0a8s" path="res://assets/drawings/Panel1.png" id="5_j7wrs"]
+[ext_resource type="Script" uid="uid://ct7066tqm44cu" path="res://scenes/mug.gd" id="7_fws66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh0fu"]
+size = Vector2(509, 1043)
+
+[sub_resource type="Animation" id="Animation_dubn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_08kqv"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1), Vector2(0.75, 0.75), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fws66"]
+resource_name = "up_down"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08kqv"]
+_data = {
+&"RESET": SubResource("Animation_dubn7"),
+&"hit": SubResource("Animation_08kqv"),
+&"up_down": SubResource("Animation_fws66")
+}
+
+[sub_resource type="Theme" id="Theme_fws66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fws66"]
+size = Vector2(177, 164)
+
+[sub_resource type="Animation" id="Animation_3m5ht"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hh0fu"]
+resource_name = "scaleClicked"
+length = 0.51
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dubn7"]
+_data = {
+&"RESET": SubResource("Animation_3m5ht"),
+&"scaleClicked": SubResource("Animation_hh0fu")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4vge2")
+
+[node name="GuyArea2D" type="Area2D" parent="CanvasLayer"]
+position = Vector2(295, 550)
+script = ExtResource("3_04qyp")
+speed = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/GuyArea2D"]
+shape = SubResource("RectangleShape2D_hh0fu")
+
+[node name="guy" type="TextureRect" parent="CanvasLayer/GuyArea2D/CollisionShape2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.00092
+offset_top = -521.5
+offset_right = 264.00092
+offset_bottom = 521.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_04qyp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GuyArea2D/CollisionShape2D/guy"]
+libraries = {
+&"": SubResource("AnimationLibrary_08kqv")
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 1754.0
+offset_top = 45.0
+offset_right = 1758.0
+offset_bottom = 72.0
+scale = Vector2(2, 2)
+theme = SubResource("Theme_fws66")
+metadata/_edit_use_anchors_ = true
+
+[node name="secondpanel" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1472.0
+offset_top = -588.0
+offset_right = 132.0
+offset_bottom = 220.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_j7wrs")
+
+[node name="firstpanel" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -808.0
+offset_right = 1604.0
+grow_vertical = 0
+texture = ExtResource("5_j7wrs")
+
+[node name="MugArea2D" type="Area2D" parent="CanvasLayer"]
+position = Vector2(1121, 847)
+script = ExtResource("7_fws66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MugArea2D"]
+shape = SubResource("RectangleShape2D_fws66")
+
+[node name="Mug" type="TextureRect" parent="CanvasLayer/MugArea2D/CollisionShape2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.5
+offset_top = -82.0
+offset_right = 88.5
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_fws66")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/MugArea2D/CollisionShape2D/Mug"]
+libraries = {
+&"": SubResource("AnimationLibrary_dubn7")
+}
+autoplay = "RESET"
+
+[connection signal="input_event" from="CanvasLayer/GuyArea2D" to="CanvasLayer/GuyArea2D" method="_on_input_event"]
+[connection signal="input_event" from="CanvasLayer/MugArea2D" to="CanvasLayer/MugArea2D" method="_on_input_event"]

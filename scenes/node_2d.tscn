@@ -1,0 +1,320 @@
+[gd_scene load_steps=40 format=3 uid="uid://cpex67fwvqxk3"]
+
+[ext_resource type="Texture2D" uid="uid://cd5goc5x5qq5y" path="res://assets/drawings/Background.png" id="1_4vge2"]
+[ext_resource type="Texture2D" uid="uid://csqxeicahnxfo" path="res://assets/drawings/guy.png" id="2_04qyp"]
+[ext_resource type="Script" uid="uid://cy13d1t2u4ml5" path="res://scenes/guy.gd" id="3_04qyp"]
+[ext_resource type="Texture2D" uid="uid://brcskew0oy60j" path="res://assets/drawings/foreground.png" id="3_j7wrs"]
+[ext_resource type="Texture2D" uid="uid://cctqnahj0isvo" path="res://assets/drawings/guyv2vnr.png" id="3_xtx0q"]
+[ext_resource type="Texture2D" uid="uid://dcl641caot51x" path="res://assets/drawings/mug.png" id="4_fws66"]
+[ext_resource type="Texture2D" uid="uid://bytldfhqdcvg5" path="res://assets/drawings/MugHitting1.png" id="5_22dhx"]
+[ext_resource type="Texture2D" uid="uid://bcpn18htc0a8s" path="res://assets/drawings/Panel1.png" id="5_j7wrs"]
+[ext_resource type="Texture2D" uid="uid://6jf3qjydauav" path="res://assets/drawings/MugHitting2.png" id="6_diulx"]
+[ext_resource type="Script" uid="uid://ct7066tqm44cu" path="res://scenes/mug.gd" id="7_fws66"]
+[ext_resource type="Texture2D" uid="uid://bfthuesplj6vy" path="res://assets/drawings/MugHitting3.png" id="7_nuk1v"]
+[ext_resource type="Script" uid="uid://bkmynsknhgo6x" path="res://scenes/paper_plane_area_2d.gd" id="8_ifa78"]
+[ext_resource type="Texture2D" uid="uid://ddnbxeit7fjw4" path="res://assets/drawings/MugHitting4.png" id="8_l0qat"]
+[ext_resource type="Texture2D" uid="uid://cawinitsraij0" path="res://assets/drawings/MugHitting5.png" id="9_wpu3o"]
+[ext_resource type="Texture2D" uid="uid://ds55up6w02t1i" path="res://assets/drawings/PaperPlane1.png" id="9_xtx0q"]
+[ext_resource type="Texture2D" uid="uid://dd5envtsv8qdp" path="res://assets/drawings/PaperPlane2.png" id="10_3kg8w"]
+[ext_resource type="Texture2D" uid="uid://cnclwbl0qgkr6" path="res://assets/drawings/MugHitting6.png" id="10_g3arh"]
+[ext_resource type="Texture2D" uid="uid://cewr4esdcwapq" path="res://assets/drawings/MugHitting7.png" id="11_unr0g"]
+[ext_resource type="Texture2D" uid="uid://d4etgxdn3v10f" path="res://assets/drawings/PaperPlane3.png" id="11_x63s8"]
+[ext_resource type="Texture2D" uid="uid://b4qwwhxnhcmmy" path="res://assets/drawings/PaperPlane4.png" id="12_0q20i"]
+[ext_resource type="Texture2D" uid="uid://bcedgxslo5lnw" path="res://assets/drawings/MugHitting8.png" id="12_jt3n0"]
+[ext_resource type="Texture2D" uid="uid://14hkt6yqh0nd" path="res://assets/drawings/MugHitting9.png" id="13_7pfoh"]
+[ext_resource type="Texture2D" uid="uid://2jxnq3cyswku" path="res://assets/drawings/PaperPlane5.png" id="13_qv8l0"]
+[ext_resource type="Texture2D" uid="uid://cs8bjn5m21xcc" path="res://assets/drawings/PaperPlane6.png" id="14_k6u5g"]
+[ext_resource type="Texture2D" uid="uid://bq6nk7nvbtfcr" path="res://assets/drawings/MugHitting10.png" id="14_mchk4"]
+[ext_resource type="Texture2D" uid="uid://g2kmfk5w4hd8" path="res://assets/drawings/MugHitting11.png" id="15_gmqbl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifa78"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xtx0q")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_04qyp")
+}],
+"loop": true,
+"name": &"iddle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_22dhx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_diulx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nuk1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l0qat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wpu3o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_g3arh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_unr0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jt3n0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7pfoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mchk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_gmqbl")
+}],
+"loop": false,
+"name": &"mug_hitting",
+"speed": 4.0
+}]
+
+[sub_resource type="Animation" id="Animation_dubn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_08kqv"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.28333333, 0.53333336, 0.78333336, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1), Vector2(0.75, 0.75), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fws66"]
+resource_name = "up_down"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08kqv"]
+_data = {
+&"RESET": SubResource("Animation_dubn7"),
+&"hit": SubResource("Animation_08kqv"),
+&"up_down": SubResource("Animation_fws66")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh0fu"]
+size = Vector2(509, 274.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifa78"]
+size = Vector2(1587, 797)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fws66"]
+size = Vector2(177, 164)
+
+[sub_resource type="Animation" id="Animation_3m5ht"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hh0fu"]
+resource_name = "scaleClicked"
+length = 0.31
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666669, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dubn7"]
+_data = {
+&"RESET": SubResource("Animation_3m5ht"),
+&"scaleClicked": SubResource("Animation_hh0fu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coh8c"]
+size = Vector2(279, 193.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kmyi7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_xtx0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3kg8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x63s8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0q20i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_qv8l0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_k6u5g")
+}],
+"loop": true,
+"name": &"folding",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4vge2")
+
+[node name="GuyCharacter2D" type="CharacterBody2D" parent="CanvasLayer"]
+position = Vector2(295, 550)
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+script = ExtResource("3_04qyp")
+actual_speed = 3.0
+
+[node name="guy" type="AnimatedSprite2D" parent="CanvasLayer/GuyCharacter2D"]
+sprite_frames = SubResource("SpriteFrames_ifa78")
+animation = &"iddle"
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GuyCharacter2D/guy"]
+libraries = {
+&"": SubResource("AnimationLibrary_08kqv")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/GuyCharacter2D"]
+position = Vector2(0, -384.25)
+shape = SubResource("RectangleShape2D_hh0fu")
+
+[node name="Timer" type="Timer" parent="CanvasLayer/GuyCharacter2D"]
+wait_time = 3.0
+
+[node name="secondpanel" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1472.0
+offset_top = -588.0
+offset_right = 132.0
+offset_bottom = 220.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_j7wrs")
+
+[node name="FirstPanelArea2D" type="Area2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(-1, 273)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/FirstPanelArea2D"]
+position = Vector2(783.5, 412.5)
+shape = SubResource("RectangleShape2D_ifa78")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/FirstPanelArea2D/CollisionShape2D"]
+offset_left = -783.5
+offset_top = -412.5
+offset_right = 820.5
+offset_bottom = 395.5
+texture = ExtResource("5_j7wrs")
+
+[node name="MugArea2D" type="Area2D" parent="CanvasLayer"]
+position = Vector2(1121, 847)
+script = ExtResource("7_fws66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MugArea2D"]
+shape = SubResource("RectangleShape2D_fws66")
+
+[node name="Mug" type="TextureRect" parent="CanvasLayer/MugArea2D/CollisionShape2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.5
+offset_top = -82.0
+offset_right = 88.5
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_fws66")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/MugArea2D/CollisionShape2D/Mug"]
+libraries = {
+&"": SubResource("AnimationLibrary_dubn7")
+}
+autoplay = "RESET"
+
+[node name="PaperPlaneArea2D" type="Area2D" parent="CanvasLayer"]
+position = Vector2(724.06, 950)
+script = ExtResource("8_ifa78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/PaperPlaneArea2D"]
+shape = SubResource("RectangleShape2D_coh8c")
+
+[node name="PaperPlane" type="AnimatedSprite2D" parent="CanvasLayer/PaperPlaneArea2D/CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_kmyi7")
+animation = &"folding"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = -0.07760417
+offset_left = 193.0
+offset_top = 724.0
+offset_right = 197.0
+offset_bottom = 751.0
+scale = Vector2(2, 2)
+metadata/_edit_use_anchors_ = true
+
+[connection signal="input_event" from="CanvasLayer/GuyCharacter2D" to="CanvasLayer/GuyCharacter2D" method="_on_input_event"]
+[connection signal="timeout" from="CanvasLayer/GuyCharacter2D/Timer" to="CanvasLayer/GuyCharacter2D" method="_on_timer_timeout"]
+[connection signal="input_event" from="CanvasLayer/MugArea2D" to="CanvasLayer/MugArea2D" method="_on_input_event"]
+[connection signal="input_event" from="CanvasLayer/PaperPlaneArea2D" to="CanvasLayer/PaperPlaneArea2D" method="_on_input_event"]
