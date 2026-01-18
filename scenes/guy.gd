@@ -34,7 +34,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	leftToRight(delta)
 	animate_collision_shape()
-	print(progress_bar.value)
+	print("mug : ",mug.mug_is_selected)
+	print("plane : ", paper_plane.plane_is_selected)
 
 
 func leftToRight(delta :float) -> void:
@@ -58,11 +59,15 @@ func add_anger(anger_num : int) -> void:
 		if has_been_hit_mug :
 			guy.play("mug_hitting")
 			mug_timer.start()
+		if has_been_hit_plane:
+			guy.play("plane_hitting")
+			mug_timer.start()
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("throw"):
 		if  is_instance_valid(mug) && mug.mug_is_selected :
+			paper_plane.plane_is_selected = false
 			mug.throw_stuff()
 			if  mug.throwed:
 				has_been_hit_mug = true
@@ -71,6 +76,8 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			mug.mug_is_selected = false
 			has_been_hit_mug = false
 		elif paper_plane.plane_is_selected && is_instance_valid(paper_plane):
+			if is_instance_valid(mug) :
+				mug.mug_is_selected = false
 			paper_plane.throw_plane()
 			if paper_plane.throwed:
 				has_been_hit_plane = true

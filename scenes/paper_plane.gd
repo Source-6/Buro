@@ -1,11 +1,13 @@
 extends Area2D
 @onready var paper_plane: AnimatedSprite2D = $CollisionShape2D/PaperPlane
+@onready var animation_player: AnimationPlayer = $CollisionShape2D/PaperPlane/AnimationPlayer
 
 
 var max_fold = 2
+var click_counter = 0
 var folded : bool
-var plane_is_selected : bool
-var throwed : bool
+@export var plane_is_selected : bool
+@export var throwed : bool
 
 
 func _ready() -> void:
@@ -21,12 +23,14 @@ func throw_plane()-> void:
 	if plane_is_selected:
 		throwed = true
 		plane_is_selected = false
-		#(add anim scale)
+
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("fold"):
-		paper_plane.frame +=1
-		if paper_plane.frame == max_fold:
+		click_counter +=1
+		paper_plane.frame = click_counter
+		if click_counter == max_fold:
 			folded = true
-			if Input.is_action_just_pressed("fold"):
-				plane_is_selected = true
+		if click_counter > max_fold:
+			plane_is_selected = true
+			animation_player.play("scalePlane")
