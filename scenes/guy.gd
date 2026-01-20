@@ -7,11 +7,21 @@ extends CharacterBody2D
 @onready var mug: Area2D = $"../MugArea2D"
 @onready var paper_plane: Area2D = $"../PaperPlaneArea2D"
 
+
+enum States {IDLE, WALK, MUG_HITTING, PLANE_HITTING}
+var state : States = States.IDLE
+
+
 var MAXRIGHT = 1700
 var MAXLEFT =50
 var MAXANGERLVL = 100
 
 @export var actual_speed : float 
+
+var time = 0.0
+@export var speed : float 
+@export var amplitude : float
+
 
 var has_been_hit_mug : bool
 var has_been_hit_plane : bool
@@ -29,13 +39,20 @@ func _ready() -> void:
 	has_been_hit_plane = false
 	can_be_hit_mug = false
 	can_be_hit_plane = false
-	guy.play("iddle")
+	guy.play("idle")
 
 func _process(delta: float) -> void:
-	leftToRight(delta)
+	time += delta*speed
+	position.x = 1000 + (sin(time) * amplitude) 
+	if cos(time)> 0.0 : 
+		guy.flip_h = true
+	else :
+		guy.flip_h = false
 	animate_collision_shape()
-	print("mug : ",mug.mug_is_selected)
-	print("plane : ", paper_plane.plane_is_selected)
+	#print("mug : ",mug.mug_is_selected)
+	#print("plane : ", paper_plane.plane_is_selected)
+	
+
 
 
 func leftToRight(delta :float) -> void:
@@ -88,4 +105,4 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 
 
 func _on_timer_timeout() -> void:
-	guy.play("iddle")
+	guy.play("idle")
