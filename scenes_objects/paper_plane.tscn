@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://bblddju4yfc2i"]
+
+[ext_resource type="Script" uid="uid://bkmynsknhgo6x" path="res://scenes/paper_plane.gd" id="1_kxx47"]
+[ext_resource type="Texture2D" uid="uid://ds55up6w02t1i" path="res://assets/drawings/PaperPlane1.png" id="2_m1s4v"]
+[ext_resource type="Texture2D" uid="uid://dd5envtsv8qdp" path="res://assets/drawings/PaperPlane2.png" id="3_dp1am"]
+[ext_resource type="Texture2D" uid="uid://d4etgxdn3v10f" path="res://assets/drawings/PaperPlane3.png" id="4_12nav"]
+[ext_resource type="Texture2D" uid="uid://cjulv27y726qf" path="res://assets/drawings/PaperPlane3Selected.png" id="5_m1s4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coh8c"]
+size = Vector2(279, 193.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kmyi7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m1s4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dp1am")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_12nav")
+}],
+"loop": false,
+"name": &"folding",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_m1s4v")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_2sxpt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ey6mn"]
+resource_name = "scalePlane"
+length = 0.31
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pblkq"]
+_data = {
+&"RESET": SubResource("Animation_2sxpt"),
+&"scalePlane": SubResource("Animation_ey6mn")
+}
+
+[node name="PaperPlane" type="Area2D"]
+script = ExtResource("1_kxx47")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_coh8c")
+
+[node name="PaperPlane" type="AnimatedSprite2D" parent="CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_kmyi7")
+animation = &"folding"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D/PaperPlane"]
+libraries = {
+&"": SubResource("AnimationLibrary_pblkq")
+}
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

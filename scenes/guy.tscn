@@ -1,0 +1,183 @@
+[gd_scene load_steps=29 format=3 uid="uid://cfqgeht44xikf"]
+
+[ext_resource type="Script" uid="uid://cy13d1t2u4ml5" path="res://scenes/guy.gd" id="1_7ofvl"]
+[ext_resource type="Texture2D" uid="uid://cctqnahj0isvo" path="res://assets/drawings/guyv2vnr.png" id="2_thiqt"]
+[ext_resource type="Texture2D" uid="uid://csqxeicahnxfo" path="res://assets/drawings/guy.png" id="3_csyyg"]
+[ext_resource type="Texture2D" uid="uid://bytldfhqdcvg5" path="res://assets/drawings/MugHitting1.png" id="4_10c6s"]
+[ext_resource type="Texture2D" uid="uid://6jf3qjydauav" path="res://assets/drawings/MugHitting2.png" id="5_lgx1y"]
+[ext_resource type="Texture2D" uid="uid://bfthuesplj6vy" path="res://assets/drawings/MugHitting3.png" id="6_puou4"]
+[ext_resource type="Texture2D" uid="uid://ddnbxeit7fjw4" path="res://assets/drawings/MugHitting4.png" id="7_h1akl"]
+[ext_resource type="Texture2D" uid="uid://cawinitsraij0" path="res://assets/drawings/MugHitting5.png" id="8_ak5ok"]
+[ext_resource type="Texture2D" uid="uid://cnclwbl0qgkr6" path="res://assets/drawings/MugHitting6.png" id="9_v0dcy"]
+[ext_resource type="Texture2D" uid="uid://cewr4esdcwapq" path="res://assets/drawings/MugHitting7.png" id="10_bdx0u"]
+[ext_resource type="Texture2D" uid="uid://bcedgxslo5lnw" path="res://assets/drawings/MugHitting8.png" id="11_1mpca"]
+[ext_resource type="Texture2D" uid="uid://14hkt6yqh0nd" path="res://assets/drawings/MugHitting9.png" id="12_mx8m0"]
+[ext_resource type="Texture2D" uid="uid://bq6nk7nvbtfcr" path="res://assets/drawings/MugHitting10.png" id="13_n8vj7"]
+[ext_resource type="Texture2D" uid="uid://g2kmfk5w4hd8" path="res://assets/drawings/MugHitting11.png" id="14_uoc6i"]
+[ext_resource type="Texture2D" uid="uid://bf3cw6a6e8hll" path="res://assets/drawings/PlaneHitting1.png" id="15_33t1x"]
+[ext_resource type="Texture2D" uid="uid://cybelofn0173q" path="res://assets/drawings/PlaneHitting2.png" id="16_1lyrs"]
+[ext_resource type="Texture2D" uid="uid://c1xqm2fufq7cl" path="res://assets/drawings/PlaneHitting3.png" id="17_y03mh"]
+[ext_resource type="Texture2D" uid="uid://htmbq0cuyrqj" path="res://assets/drawings/PlaneHitting4.png" id="18_j87xl"]
+[ext_resource type="Texture2D" uid="uid://sa5a5brm8dth" path="res://assets/drawings/PlaneHitting5.png" id="19_q4wmu"]
+[ext_resource type="Texture2D" uid="uid://6aqv8o1426dn" path="res://assets/drawings/PlaneHitting6.png" id="20_wj8qh"]
+[ext_resource type="Texture2D" uid="uid://dahadq6khbul0" path="res://assets/drawings/PlaneHitting7.png" id="21_pv8yq"]
+[ext_resource type="Texture2D" uid="uid://dyyihnnf34hxx" path="res://assets/drawings/PlaneHitting8.png" id="22_1w52w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifa78"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_thiqt")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_csyyg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_10c6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lgx1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_puou4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h1akl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ak5ok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_v0dcy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bdx0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1mpca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mx8m0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_n8vj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_uoc6i")
+}],
+"loop": false,
+"name": &"mug_hitting",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_33t1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1lyrs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_y03mh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_j87xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_q4wmu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_wj8qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_pv8yq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_1w52w")
+}],
+"loop": false,
+"name": &"plane_hitting",
+"speed": 3.0
+}]
+
+[sub_resource type="Animation" id="Animation_dubn7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_08kqv"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.28333333, 0.53333336, 0.78333336, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1), Vector2(0.75, 0.75), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fws66"]
+resource_name = "up_down"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08kqv"]
+_data = {
+&"RESET": SubResource("Animation_dubn7"),
+&"hit": SubResource("Animation_08kqv"),
+&"up_down": SubResource("Animation_fws66")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hh0fu"]
+size = Vector2(509, 349.5)
+
+[node name="Guy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+script = ExtResource("1_7ofvl")
+amplitude = 800.0
+speed = 0.5
+
+[node name="guy_sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ifa78")
+animation = &"plane_hitting"
+frame = 7
+frame_progress = 1.0
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="guy_sprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_08kqv")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -346.75)
+shape = SubResource("RectangleShape2D_hh0fu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
