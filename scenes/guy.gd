@@ -3,10 +3,12 @@ extends CharacterBody2D
 @onready var guy_sprite: AnimatedSprite2D = $guy_sprite
 @onready var animation_player: AnimationPlayer = $guy/AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var timer: Timer = $Timer
-@onready var progress_bar: ProgressBar = $"../ProgressBar"
-@onready var mug: Area2D = $"../Mug"
-@onready var paper_plane: Area2D = $"../PaperPlane"
+@onready var anim_timer: Timer = $Anim_Timer
+@onready var slow_timer: Timer = $Slow_Timer
+
+@onready var progress_bar: ProgressBar = $"../Office/ProgressBar"
+@onready var mug: Area2D = $"../Office/Mug"
+@onready var paper_plane: Area2D = $"../Office/PaperPlane"
 
 
 
@@ -15,8 +17,6 @@ enum States {IDLE, WALK, MUG_HITTING, PLANE_HITTING}
 var state : States = States.IDLE
 
 
-var MAXRIGHT = 1700
-var MAXLEFT =50
 var MAXANGERLVL = 100
 
 
@@ -26,13 +26,18 @@ var pref_speed : float
 var time = 0.0
 
 
+
+var maxright = 1700
+var maxleft =50
 var has_been_hit_mug : bool
 var has_been_hit_plane : bool
 var anger_mug = 10
 var anger_plane = 5
 var can_be_hit_mug : bool
 var can_be_hit_plane : bool
-
+var pos_offset = 1000
+var direction = -1
+var start_pos = 3000
 
 func _ready() -> void:
 	progress_bar.value = 0
@@ -42,27 +47,44 @@ func _ready() -> void:
 	can_be_hit_plane = false
 	pref_speed = speed
 	guy_sprite.play("idle")
+	position.x = start_pos
+	guy_sprite.flip_h = true
+	
+	GlobalTimer.start()
 
 func _process(delta: float) -> void:
 	
 	#replaced lefttoright()
-	time += delta*speed
-	position.x = 1000 + (sin(time) * amplitude) 
-	if cos(time)> 0.0 : 
+	#time += delta*speed
+	#position.x = pos_offset + (sin(time) * amplitude) 
+	#if cos(time)> 0.0 : 
+		#guy_sprite.flip_h = true
+	#else :
+		#guy_sprite.flip_h = false
+		
+	position.x += speed * delta * direction
+	if position.x <= maxleft :
+		direction = 1
 		guy_sprite.flip_h = true
-	else :
+	elif position.x >= maxright:
+		direction = -1 
 		guy_sprite.flip_h = false
-
+		
+	#print(GlobalTimer.time_left)
+	print(speed)
 	animate_collision_shape()
+	
 
 
 
 
 func animate_collision_shape() -> void:
 	if position.x >= 1500:
-		collision_shape_2d.scale.y = 2.5
+		collision_shape_2d.scale.y = 3
+		collision_shape_2d.position.y = 0
 	else :
 		collision_shape_2d.scale.y = 1
+		collision_shape_2d.position.y = -360
 
 
 func add_anger(anger_num : int) -> void:
@@ -70,37 +92,45 @@ func add_anger(anger_num : int) -> void:
 		speed = 0
 		if has_been_hit_mug :
 			guy_sprite.play("mug_hitting")
-			timer.start()
+			anim_timer.start()
 		if has_been_hit_plane:
 			guy_sprite.play("plane_hitting")
-			timer.start()
+			anim_timer.start()
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("throw"):
 		if  is_instance_valid(mug) && mug.mug_is_selected :
-			paper_plane.plane_is_selected = false
 			mug.throw_mug()
 			if  mug.throwed:
 				has_been_hit_mug = true
 				add_anger(anger_mug)
 				mug.queue_free()
 			mug.mug_is_selected = false
-			has_been_hit_mug = false
+			#has_been_hit_mug = false
 
 
 		elif paper_plane.plane_is_selected && is_instance_valid(paper_plane):
-			if is_instance_valid(mug) :
-				mug.mug_is_selected = false
 			paper_plane.throw_plane()
 			if paper_plane.throwed:
 				has_been_hit_plane = true
 				add_anger(anger_plane)
 				#need to del plane and selected = false
+			paper_plane.plane_is_selected = false
+			has_been_hit_plane = false
 
 
-
-
-func _on_timer_timeout() -> void:
+func _on_anim_timer_timeout() -> void:
 	guy_sprite.play("idle")
+	
+	if  has_been_hit_mug:
+		speed = pref_speed/2
+		slow_timer.start()
+		has_been_hit_mug = false
+	else :
+		speed = pref_speed
+
+
+
+func _on_slow_timer_timeout() -> void:
 	speed = pref_speed

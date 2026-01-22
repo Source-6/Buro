@@ -1,0 +1,18 @@
+extends Area2D
+@onready var cupboard_sprite_2d: AnimatedSprite2D = $"../Cupboard/AnimatedSprite2D"
+
+
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if cupboard_sprite_2d.animation == "closed":
+		visible = false
+	elif cupboard_sprite_2d.animation == "open":
+		visible = true

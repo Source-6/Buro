@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://rv1pbsiv6cpa"]
+
+[node name="GlobalTimer" type="Timer"]
+wait_time = 60.0

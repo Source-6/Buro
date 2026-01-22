@@ -1,3 +1,55 @@
-[gd_scene format=3 uid="uid://gg3cfi7fcg8m"]
+[gd_scene load_steps=9 format=3 uid="uid://gg3cfi7fcg8m"]
+
+[ext_resource type="Texture2D" uid="uid://besqsvx8v71ss" path="res://assets/drawings/Cafeteria.png" id="1_lxqgr"]
+[ext_resource type="PackedScene" uid="uid://dvgj05avhjxbx" path="res://scenes_objects/coffee_machine.tscn" id="2_qb7qk"]
+[ext_resource type="PackedScene" uid="uid://b664ta4kpj2eu" path="res://scenes_objects/cupboard.tscn" id="3_b1tm1"]
+[ext_resource type="Texture2D" uid="uid://btdwa8xubyri0" path="res://assets/drawings/sugar_closed.png" id="4_56h80"]
+[ext_resource type="Script" uid="uid://bbg5lj3a3cvbf" path="res://scenes/sugar.gd" id="4_q6njj"]
+[ext_resource type="Texture2D" uid="uid://cj5wccedt5jx6" path="res://assets/drawings/sugar_open.png" id="5_q6njj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1tm1"]
+size = Vector2(78, 85.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gjhfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_56h80")
+}],
+"loop": true,
+"name": &"sugar_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_q6njj")
+}],
+"loop": true,
+"name": &"sugar_open",
+"speed": 5.0
+}]
 
 [node name="Cafet" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_lxqgr")
+
+[node name="Coffee_machine" parent="." instance=ExtResource("2_qb7qk")]
+
+[node name="Cupboard" parent="." instance=ExtResource("3_b1tm1")]
+position = Vector2(572, 172)
+
+[node name="Sugar" type="Area2D" parent="."]
+position = Vector2(422, 130)
+script = ExtResource("4_q6njj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sugar"]
+shape = SubResource("RectangleShape2D_b1tm1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sugar/CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_gjhfe")
+animation = &"sugar_closed"
+
+[connection signal="input_event" from="Coffee_machine" to="Coffee_machine" method="_on_input_event"]

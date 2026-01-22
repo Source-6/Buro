@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcpn18htc0a8s"
-valid=false
+uid="uid://c25ugy7hny7re"
+path="res://.godot/imported/PanelOrdi.png-3ceb89121e6021ad2514a39bcb2bec58.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/drawings/Panel1.png"
+source_file="res://assets/drawings/PanelOrdi.png"
+dest_files=["res://.godot/imported/PanelOrdi.png-3ceb89121e6021ad2514a39bcb2bec58.ctex"]
 
 [params]
 

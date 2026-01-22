@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://b664ta4kpj2eu"]
+
+[ext_resource type="Script" uid="uid://jn43wer4tb4e" path="res://scenes/cupboard.gd" id="1_hwoos"]
+[ext_resource type="Texture2D" uid="uid://oaxtw02bfr2k" path="res://assets/drawings/CupboardClosed.png" id="2_q1e6f"]
+[ext_resource type="Texture2D" uid="uid://nmn3vc5oo4d6" path="res://assets/drawings/CupboardOpen.png" id="3_rqkld"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56h80"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q1e6f")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rqkld")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjhfe"]
+size = Vector2(441.75, 249)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwoos"]
+size = Vector2(146, 257)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1e6f"]
+size = Vector2(158, 244)
+
+[node name="Cupboard" type="Area2D"]
+script = ExtResource("1_hwoos")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, -18)
+sprite_frames = SubResource("SpriteFrames_56h80")
+animation = &"closed"
+
+[node name="CollisionShapeClosed" type="CollisionShape2D" parent="."]
+position = Vector2(2.125, -4.5)
+shape = SubResource("RectangleShape2D_gjhfe")
+
+[node name="CollisionShapeOpen1" type="CollisionShape2D" parent="."]
+position = Vector2(-295, -19.5)
+shape = SubResource("RectangleShape2D_hwoos")
+
+[node name="CollisionShapeOpen2" type="CollisionShape2D" parent="."]
+position = Vector2(308, -21)
+shape = SubResource("RectangleShape2D_q1e6f")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

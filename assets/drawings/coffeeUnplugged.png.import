@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcpn18htc0a8s"
-valid=false
+uid="uid://cxqot6124ekmg"
+path="res://.godot/imported/coffeeUnplugged.png-03fb92af4dc3b754a7bd24928c861f49.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/drawings/Panel1.png"
+source_file="res://assets/drawings/coffeeUnplugged.png"
+dest_files=["res://.godot/imported/coffeeUnplugged.png-03fb92af4dc3b754a7bd24928c861f49.ctex"]
 
 [params]
 

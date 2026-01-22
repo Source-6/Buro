@@ -150,7 +150,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hh0fu"]
-size = Vector2(509, 349.5)
+size = Vector2(509, 317.5)
 
 [node name="Guy" type="CharacterBody2D"]
 collision_layer = 2
@@ -158,7 +158,7 @@ collision_mask = 2
 input_pickable = true
 script = ExtResource("1_7ofvl")
 amplitude = 800.0
-speed = 0.5
+speed = 500.0
 
 [node name="guy_sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ifa78")
@@ -173,11 +173,17 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -346.75)
+position = Vector2(0, -360)
 shape = SubResource("RectangleShape2D_hh0fu")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Anim_Timer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
+
+[node name="Slow_Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Anim_Timer" to="." method="_on_anim_timer_timeout"]
+[connection signal="timeout" from="Slow_Timer" to="." method="_on_slow_timer_timeout"]

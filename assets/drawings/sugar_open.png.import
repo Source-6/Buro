@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcpn18htc0a8s"
-valid=false
+uid="uid://cj5wccedt5jx6"
+path="res://.godot/imported/sugar_open.png-8f13383180341af48b3b4546eed2532b.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/drawings/Panel1.png"
+source_file="res://assets/drawings/sugar_open.png"
+dest_files=["res://.godot/imported/sugar_open.png-8f13383180341af48b3b4546eed2532b.ctex"]
 
 [params]
 

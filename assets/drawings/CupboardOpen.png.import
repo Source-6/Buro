@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcpn18htc0a8s"
-valid=false
+uid="uid://nmn3vc5oo4d6"
+path="res://.godot/imported/CupboardOpen.png-50d6e1242788218943be5cc6883c3220.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/drawings/Panel1.png"
+source_file="res://assets/drawings/CupboardOpen.png"
+dest_files=["res://.godot/imported/CupboardOpen.png-50d6e1242788218943be5cc6883c3220.ctex"]
 
 [params]
 

@@ -42,3 +42,4 @@ func throw_plane()-> void:
 	if plane_is_selected:
 		throwed = true
 		plane_is_selected = false
+		click_counter = 0

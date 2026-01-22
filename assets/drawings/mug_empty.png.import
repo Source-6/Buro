@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcpn18htc0a8s"
-valid=false
+uid="uid://cw40hc5wc0dbd"
+path="res://.godot/imported/mug_empty.png-0c968ec07fcddc1452b77735a658847e.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/drawings/Panel1.png"
+source_file="res://assets/drawings/mug_empty.png"
+dest_files=["res://.godot/imported/mug_empty.png-0c968ec07fcddc1452b77735a658847e.ctex"]
 
 [params]
 
