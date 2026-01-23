@@ -4,23 +4,32 @@ extends Area2D
 @onready var counter: Area2D = $"../Counter"
 @onready var counter_sprite_2d: AnimatedSprite2D = $"../Counter/AnimatedSprite2D"
 
+@onready var trash_sprite: AnimatedSprite2D = $"../Trash/CollisionShape2D/AnimatedSprite2D"
+@onready var particles: CPUParticles2D = $CPUParticles2D
+
 @onready var sugar_sprite: AnimatedSprite2D = $CollisionShape2D/AnimatedSprite2D
+@onready var sugar_timer: Timer = $Sugar_Timer
 
 
 
 
 var sugar_is_selected : bool
 var sugar_placed : bool
+var sugar_can_empty : bool
+var sugar_empty : bool 
 var counter_pos_sugar = Vector2(720,580)
+var trash_pos_sugar = Vector2(250,670)
 
 func _ready() -> void:
 	sugar_is_selected = false
 	sugar_placed = false
+	sugar_can_empty = false
+	sugar_empty = false
 
 
 func _process(delta: float) -> void:
 	if sugar_is_selected && !sugar_placed:
-		print("wow")
+		#print("wow")
 		counter_sprite_2d.play("glowing")
 	else:
 		counter_sprite_2d.play("default")
@@ -31,13 +40,39 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		animation_player.play("scale")
 		sugar_sprite.play("sugar_selected")
 		sugar_is_selected = true
+		if sugar_placed && sugar_can_empty:
+			sugar_sprite.play("sugar_open")
+			trash_sprite.play("trash_glowing")
 
 
 func _on_counter_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("select"):
-		if sugar_is_selected:
+		if sugar_is_selected && !sugar_placed:
 			sugar_sprite.play("sugar_closed")
 			position = counter_pos_sugar
 			sugar_placed = true
+			sugar_can_empty = true
 			sugar_is_selected = false
 			
+
+func sugar_emptying()->void:
+	position = trash_pos_sugar
+	rotation_degrees = -85.0
+	particles.emitting =true
+	sugar_timer.start()
+	sugar_empty = true
+
+
+func _on_trash_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if Input.is_action_just_pressed("select"):
+		if sugar_can_empty:
+			sugar_emptying()
+
+
+func _on_sugar_timer_timeout() -> void:
+	particles.emitting = false
+	position = counter_pos_sugar
+	rotation_degrees = 0
+	sugar_is_selected = false
+	sugar_can_empty = false
+	trash_sprite.play("trash_full")

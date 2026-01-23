@@ -27,6 +27,7 @@ animations = [{
 }]
 
 [node name="Salt" type="Area2D"]
+rotation = 1.0471976
 script = ExtResource("1_vd258")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -35,4 +36,15 @@ shape = SubResource("RectangleShape2D_71lpy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
 sprite_frames = SubResource("SpriteFrames_vd258")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0.3134637, -42.54294)
+emitting = false
+amount = 250
+lifetime = 0.4
+emission_shape = 1
+emission_sphere_radius = 6.87
+
+[node name="Salt_Timer" type="Timer" parent="."]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="Salt_Timer" to="." method="_on_salt_timer_timeout"]

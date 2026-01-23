@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://yu8xkaolvtxr"]
+
+[ext_resource type="Texture2D" uid="uid://qbvm3xrsjulm" path="res://assets/drawings/trash_empty.png" id="1_3ikny"]
+[ext_resource type="Texture2D" uid="uid://dyor482g0aw6d" path="res://assets/drawings/trash_full.png" id="2_s4s2t"]
+[ext_resource type="Texture2D" uid="uid://bci2ia0waw8k5" path="res://assets/drawings/trash_glowing.png" id="2_vpf3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpf3x"]
+size = Vector2(338, 311)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s4s2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3ikny")
+}],
+"loop": true,
+"name": &"trash_empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s4s2t")
+}],
+"loop": true,
+"name": &"trash_full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vpf3x")
+}],
+"loop": true,
+"name": &"trash_glowing",
+"speed": 5.0
+}]
+
+[node name="Trash" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vpf3x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_s4s2t")
+animation = &"trash_empty"
