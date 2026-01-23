@@ -20,13 +20,15 @@ func _process(delta: float) -> void:
 		if mouse_in:
 			animation_player.play("scaleClicked")
 			mug_is_selected = true
+			mug_sprite.play("selected")
 		else :
 			mug_is_selected = false
+			mug_sprite.play("unselected")
 			
-	if mug_is_selected:
-		mug_sprite.play("selected")
-	else :
-		mug_sprite.play("unselected")
+	#if mug_is_selected:
+		#mug_sprite.play("selected")
+	#else :
+		#mug_sprite.play("unselected")
 		
 
 

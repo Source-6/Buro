@@ -6,27 +6,22 @@ extends Area2D
 
 
 
-var is_open : bool
+var is_closed : bool
 
 func _ready() -> void:
-	is_open = false
+	is_closed = true
 
 func _process(delta: float) -> void:
-	if !is_open:
-		collision_shape_open_1.set_process(false)
-		collision_shape_open_2.set_process(false)
-		collision_shape_closed.set_process(true)
-	elif !is_open:
-		collision_shape_closed.set_process(false)
-		collision_shape_open_1.set_process(true)
-		collision_shape_open_2.set_process(true)
+	collision_shape_closed.disabled = !is_closed
+	collision_shape_open_1.disabled = is_closed
+	collision_shape_open_2.disabled = is_closed
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if Input.is_action_just_pressed("select") && !is_open:
+	if Input.is_action_just_pressed("select") && is_closed:
 		cupboard_sprite_2d.play("open")  #need to change collision shape (only on the door)
-		is_open = true
+		is_closed = false
 	elif Input.is_action_just_pressed("select") :
 		cupboard_sprite_2d.play("closed")
-		is_open = false
+		is_closed = true
 		

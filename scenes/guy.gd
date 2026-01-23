@@ -71,7 +71,6 @@ func _process(delta: float) -> void:
 		guy_sprite.flip_h = false
 		
 	#print(GlobalTimer.time_left)
-	print(speed)
 	animate_collision_shape()
 	
 

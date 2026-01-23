@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://6usqljfsqius"]
+
+[ext_resource type="Texture2D" uid="uid://do3bfobkc2ct7" path="res://assets/drawings/salt.png" id="1_eqrbj"]
+[ext_resource type="Script" uid="uid://6usv6rw4w5yc" path="res://scenes_objects/salt.gd" id="1_vd258"]
+[ext_resource type="Texture2D" uid="uid://cwexmkjnst62q" path="res://assets/drawings/salt_selected.png" id="2_71lpy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71lpy"]
+size = Vector2(70, 94)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vd258"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eqrbj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_71lpy")
+}],
+"loop": true,
+"name": &"salt_selected",
+"speed": 5.0
+}]
+
+[node name="Salt" type="Area2D"]
+script = ExtResource("1_vd258")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_71lpy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_vd258")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
