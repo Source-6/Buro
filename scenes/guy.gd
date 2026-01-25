@@ -23,7 +23,9 @@ var MAXANGERLVL = 100
 @export var amplitude : float
 @export var speed : float 
 var pref_speed : float
-var time = 0.0
+
+var min_x_coffee = 2800
+var max_x_coffee = 3300
 
 
 
@@ -37,7 +39,7 @@ var can_be_hit_mug : bool
 var can_be_hit_plane : bool
 var pos_offset = 1000
 var direction = -1
-var start_pos = 3000
+var start_pos = 1000
 
 func _ready() -> void:
 	progress_bar.value = 0
@@ -50,6 +52,7 @@ func _ready() -> void:
 	position.x = start_pos
 	guy_sprite.flip_h = true
 	
+	GlobalTimer.timeout.connect(timeout_global_timer)
 	GlobalTimer.start()
 
 func _process(delta: float) -> void:
@@ -61,20 +64,36 @@ func _process(delta: float) -> void:
 		#guy_sprite.flip_h = true
 	#else :
 		#guy_sprite.flip_h = false
-		
+	
+	if GlobalTimer.time_left >30:
+		maxleft = 50
+		maxright = 1650
+	elif GlobalTimer.time_left <= 30:
+		maxleft = 2200
+		maxright = 3700
+
+	
 	position.x += speed * delta * direction
 	if position.x <= maxleft :
 		direction = 1
-		guy_sprite.flip_h = true
 	elif position.x >= maxright:
 		direction = -1 
+		
+	if direction == 1:
+		guy_sprite.flip_h = true
+	elif direction == -1:
 		guy_sprite.flip_h = false
 		
-	#print(GlobalTimer.time_left)
 	animate_collision_shape()
-	
+	print(GlobalTimer.time_left)
 
-
+func timeout_global_timer()->void:
+	if position.x < min_x_coffee:
+		direction = 1
+		
+	elif position.x > max_x_coffee:
+		direction = -1
+		
 
 
 func animate_collision_shape() -> void:
@@ -106,15 +125,13 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 				add_anger(anger_mug)
 				mug.queue_free()
 			mug.mug_is_selected = false
-			#has_been_hit_mug = false
-
 
 		elif paper_plane.plane_is_selected && is_instance_valid(paper_plane):
 			paper_plane.throw_plane()
 			if paper_plane.throwed:
 				has_been_hit_plane = true
 				add_anger(anger_plane)
-				#need to del plane and selected = false
+				#need to del plane 
 			paper_plane.plane_is_selected = false
 			has_been_hit_plane = false
 

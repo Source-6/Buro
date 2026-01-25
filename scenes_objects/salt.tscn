@@ -45,6 +45,7 @@ emission_shape = 1
 emission_sphere_radius = 6.87
 
 [node name="Salt_Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="Salt_Timer" to="." method="_on_salt_timer_timeout"]

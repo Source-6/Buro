@@ -24,16 +24,16 @@ position = Vector2(904, 604)
 position = Vector2(572, 172)
 
 [node name="Trash" parent="." instance=ExtResource("7_dvval")]
-position = Vector2(174, 849)
+position = Vector2(175, 850)
+
+[node name="Sugar" parent="." instance=ExtResource("4_gjhfe")]
+position = Vector2(865, 546)
 
 [node name="Salt" parent="." instance=ExtResource("6_q6njj")]
 position = Vector2(430, 113)
 rotation = 0.0
 
-[node name="Sugar" parent="." instance=ExtResource("4_gjhfe")]
-position = Vector2(865, 546)
-
-[connection signal="input_event" from="Counter" to="Salt" method="_on_counter_input_event"]
 [connection signal="input_event" from="Counter" to="Sugar" method="_on_counter_input_event"]
+[connection signal="input_event" from="Counter" to="Salt" method="_on_counter_input_event"]
 [connection signal="input_event" from="Coffee_machine" to="Coffee_machine" method="_on_input_event"]
 [connection signal="input_event" from="Trash" to="Sugar" method="_on_trash_input_event"]

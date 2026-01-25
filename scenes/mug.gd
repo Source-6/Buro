@@ -24,16 +24,6 @@ func _process(delta: float) -> void:
 		else :
 			mug_is_selected = false
 			mug_sprite.play("unselected")
-			
-	#if mug_is_selected:
-		#mug_sprite.play("selected")
-	#else :
-		#mug_sprite.play("unselected")
-		
-
-
-
-
 
 
 func throw_mug()-> void:

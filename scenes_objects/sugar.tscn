@@ -99,7 +99,7 @@ emission_sphere_radius = 15.09
 spread = 180.0
 
 [node name="Sugar_Timer" type="Timer" parent="."]
-wait_time = 1.5
+one_shot = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="Sugar_Timer" to="." method="_on_sugar_timer_timeout"]
