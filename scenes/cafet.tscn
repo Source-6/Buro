@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://gg3cfi7fcg8m"]
+[gd_scene load_steps=11 format=3 uid="uid://gg3cfi7fcg8m"]
 
 [ext_resource type="Texture2D" uid="uid://besqsvx8v71ss" path="res://assets/drawings/Cafeteria.png" id="1_lxqgr"]
 [ext_resource type="PackedScene" uid="uid://5te5egorlmry" path="res://scenes_objects/counter.tscn" id="2_56h80"]
@@ -7,6 +7,27 @@
 [ext_resource type="PackedScene" uid="uid://cdoyp23sllr20" path="res://scenes_objects/sugar.tscn" id="4_gjhfe"]
 [ext_resource type="PackedScene" uid="uid://6usqljfsqius" path="res://scenes_objects/salt.tscn" id="6_q6njj"]
 [ext_resource type="PackedScene" uid="uid://yu8xkaolvtxr" path="res://scenes_objects/trash.tscn" id="7_dvval"]
+[ext_resource type="Texture2D" uid="uid://cw40hc5wc0dbd" path="res://assets/drawings/mug_empty.png" id="8_l44pw"]
+[ext_resource type="Texture2D" uid="uid://dcl641caot51x" path="res://assets/drawings/mug.png" id="9_ehdxi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ehdxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_l44pw")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ehdxi")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
 
 [node name="Cafet" type="Node2D"]
 
@@ -32,6 +53,11 @@ position = Vector2(865, 546)
 [node name="Salt" parent="." instance=ExtResource("6_q6njj")]
 position = Vector2(430, 113)
 rotation = 0.0
+
+[node name="Guy_Mug" type="AnimatedSprite2D" parent="."]
+position = Vector2(1397, 565)
+sprite_frames = SubResource("SpriteFrames_ehdxi")
+animation = &"empty"
 
 [connection signal="input_event" from="Counter" to="Sugar" method="_on_counter_input_event"]
 [connection signal="input_event" from="Counter" to="Salt" method="_on_counter_input_event"]

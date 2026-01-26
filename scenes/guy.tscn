@@ -1,13 +1,22 @@
-[gd_scene load_steps=29 format=3 uid="uid://cfqgeht44xikf"]
+[gd_scene load_steps=38 format=3 uid="uid://cfqgeht44xikf"]
 
 [ext_resource type="Script" uid="uid://cy13d1t2u4ml5" path="res://scenes/guy.gd" id="1_7ofvl"]
 [ext_resource type="Texture2D" uid="uid://cctqnahj0isvo" path="res://assets/drawings/guyv2vnr.png" id="2_thiqt"]
+[ext_resource type="Texture2D" uid="uid://dtbm7lnkp5mrl" path="res://assets/drawings/guy_drinking_coffee1.png" id="3_bdx0u"]
 [ext_resource type="Texture2D" uid="uid://csqxeicahnxfo" path="res://assets/drawings/guy.png" id="3_csyyg"]
+[ext_resource type="Texture2D" uid="uid://ba2t4nkx3go64" path="res://assets/drawings/guy_drinking_coffee2.png" id="4_1mpca"]
 [ext_resource type="Texture2D" uid="uid://bytldfhqdcvg5" path="res://assets/drawings/MugHitting1.png" id="4_10c6s"]
+[ext_resource type="Texture2D" uid="uid://csig7vd7ek1r1" path="res://assets/drawings/guy_making_coffee1.png" id="4_csyyg"]
+[ext_resource type="Texture2D" uid="uid://d0u6hv0hwohat" path="res://assets/drawings/guy_making_coffee2.png" id="5_10c6s"]
 [ext_resource type="Texture2D" uid="uid://6jf3qjydauav" path="res://assets/drawings/MugHitting2.png" id="5_lgx1y"]
+[ext_resource type="Texture2D" uid="uid://7yyn4dbf1466" path="res://assets/drawings/guy_drinking_coffee3.png" id="5_mx8m0"]
+[ext_resource type="Texture2D" uid="uid://cfhbu0jgk5m18" path="res://assets/drawings/guy_drinking_coffee4.png" id="6_n8vj7"]
 [ext_resource type="Texture2D" uid="uid://bfthuesplj6vy" path="res://assets/drawings/MugHitting3.png" id="6_puou4"]
 [ext_resource type="Texture2D" uid="uid://ddnbxeit7fjw4" path="res://assets/drawings/MugHitting4.png" id="7_h1akl"]
+[ext_resource type="Texture2D" uid="uid://cmfjkcfv04v1q" path="res://assets/drawings/guy_drinking_coffee5.png" id="7_uoc6i"]
+[ext_resource type="Texture2D" uid="uid://dnrfnk8sxusx7" path="res://assets/drawings/guy_drinking_salt1.png" id="8_33t1x"]
 [ext_resource type="Texture2D" uid="uid://cawinitsraij0" path="res://assets/drawings/MugHitting5.png" id="8_ak5ok"]
+[ext_resource type="Texture2D" uid="uid://cfav4u8oyvc8i" path="res://assets/drawings/guy_drinking_salt2.png" id="9_1lyrs"]
 [ext_resource type="Texture2D" uid="uid://cnclwbl0qgkr6" path="res://assets/drawings/MugHitting6.png" id="9_v0dcy"]
 [ext_resource type="Texture2D" uid="uid://cewr4esdcwapq" path="res://assets/drawings/MugHitting7.png" id="10_bdx0u"]
 [ext_resource type="Texture2D" uid="uid://bcedgxslo5lnw" path="res://assets/drawings/MugHitting8.png" id="11_1mpca"]
@@ -35,10 +44,56 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_bdx0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1mpca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mx8m0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n8vj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uoc6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_33t1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1lyrs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1lyrs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1lyrs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1lyrs")
+}],
+"loop": false,
+"name": &"drinking_bad_coffee",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_csyyg")
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_csyyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_10c6s")
+}],
+"loop": false,
+"name": &"making_coffee",
 "speed": 5.0
 }, {
 "frames": [{
@@ -162,9 +217,7 @@ speed = 500.0
 
 [node name="guy_sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ifa78")
-animation = &"plane_hitting"
-frame = 7
-frame_progress = 1.0
+animation = &"drinking_bad_coffee"
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="guy_sprite"]

@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var progress_bar: ProgressBar = $"../Office/ProgressBar"
 @onready var mug: Area2D = $"../Office/Mug"
 @onready var paper_plane: Area2D = $"../Office/PaperPlane"
+@onready var sugar: Area2D = $"../Cafet/Sugar"
 
 
 
@@ -25,7 +26,7 @@ var MAXANGERLVL = 100
 var pref_speed : float
 
 var min_x_coffee = 2800
-var max_x_coffee = 3300
+var max_x_coffee = 3150
 
 
 
@@ -65,10 +66,10 @@ func _process(delta: float) -> void:
 	#else :
 		#guy_sprite.flip_h = false
 	
-	if GlobalTimer.time_left >30:
+	if GlobalTimer.time_left > 30:
 		maxleft = 50
 		maxright = 1650
-	elif GlobalTimer.time_left <= 30:
+	elif GlobalTimer.time_left < 30:
 		maxleft = 2200
 		maxright = 3700
 
@@ -85,15 +86,24 @@ func _process(delta: float) -> void:
 		guy_sprite.flip_h = false
 		
 	animate_collision_shape()
-	print(GlobalTimer.time_left)
+	print(position.x)
 
 func timeout_global_timer()->void:
-	if position.x < min_x_coffee:
+	#change this with lauching ohter timer
+	make_coffee()
+
+func make_coffee()->void:
+	if position.x <= min_x_coffee:
 		direction = 1
-		
-	elif position.x > max_x_coffee:
+	elif position.x >= max_x_coffee:
 		direction = -1
-		
+	speed = 0
+	guy_sprite.play("making_coffee")
+	guy_sprite.play("making_coffee")
+	guy_sprite.play("making_coffee")
+	if sugar.sugar_has_salt:
+		guy_sprite.play("drinking_bad_coffee")
+		add_anger(40)
 
 
 func animate_collision_shape() -> void:
