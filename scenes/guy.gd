@@ -42,6 +42,8 @@ var pos_offset = 1000
 var direction = -1
 var start_pos = 1000
 
+
+
 func _ready() -> void:
 	progress_bar.value = 0
 	has_been_hit_mug = false
@@ -57,7 +59,9 @@ func _ready() -> void:
 	GlobalTimer.start()
 
 func _process(delta: float) -> void:
-	
+	if progress_bar.value >= 20:
+		lauch_victory()
+		
 	#replaced lefttoright()
 	#time += delta*speed
 	#position.x = pos_offset + (sin(time) * amplitude) 
@@ -86,11 +90,14 @@ func _process(delta: float) -> void:
 		guy_sprite.flip_h = false
 		
 	animate_collision_shape()
-	print(position.x)
 
 func timeout_global_timer()->void:
-	#change this with lauching ohter timer
+	#lauching ohter timer
 	make_coffee()
+
+func lauch_victory()->void:
+	get_tree().change_scene_to_file("res://scenes/victory.tscn")
+	
 
 func make_coffee()->void:
 	if position.x <= min_x_coffee:
@@ -99,11 +106,17 @@ func make_coffee()->void:
 		direction = -1
 	speed = 0
 	guy_sprite.play("making_coffee")
-	guy_sprite.play("making_coffee")
-	guy_sprite.play("making_coffee")
+	await guy_sprite.animation_finished
 	if sugar.sugar_has_salt:
 		guy_sprite.play("drinking_bad_coffee")
+		anim_timer.start()
 		add_anger(40)
+	if !sugar.sugar_has_salt:
+		guy_sprite.play("drinking_good_coffee")
+		anim_timer.start()
+		
+	GlobalTimer.start()
+		
 
 
 func animate_collision_shape() -> void:
@@ -141,7 +154,8 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			if paper_plane.throwed:
 				has_been_hit_plane = true
 				add_anger(anger_plane)
-				#need to del plane 
+				if paper_plane.planes_made >=4:
+					paper_plane.queue_free()
 			paper_plane.plane_is_selected = false
 			has_been_hit_plane = false
 

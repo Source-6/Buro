@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gg3cfi7fcg8m"]
+[gd_scene load_steps=15 format=3 uid="uid://gg3cfi7fcg8m"]
 
 [ext_resource type="Texture2D" uid="uid://besqsvx8v71ss" path="res://assets/drawings/Cafeteria.png" id="1_lxqgr"]
 [ext_resource type="PackedScene" uid="uid://5te5egorlmry" path="res://scenes_objects/counter.tscn" id="2_56h80"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://yu8xkaolvtxr" path="res://scenes_objects/trash.tscn" id="7_dvval"]
 [ext_resource type="Texture2D" uid="uid://cw40hc5wc0dbd" path="res://assets/drawings/mug_empty.png" id="8_l44pw"]
 [ext_resource type="Texture2D" uid="uid://dcl641caot51x" path="res://assets/drawings/mug.png" id="9_ehdxi"]
+[ext_resource type="Script" uid="uid://cia6pxnoxnnr8" path="res://scenes/to_do.gd" id="10_df5by"]
+[ext_resource type="Texture2D" uid="uid://c2mikq7ebmamb" path="res://assets/drawings/ToDoList.png" id="10_yh18e"]
+[ext_resource type="Texture2D" uid="uid://hxihgb88ojvd" path="res://assets/drawings/ToDoCloseUp.png" id="12_4yype"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ehdxi"]
 animations = [{
@@ -28,6 +31,9 @@ animations = [{
 "name": &"full",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdoff"]
+size = Vector2(188, 157)
 
 [node name="Cafet" type="Node2D"]
 
@@ -59,7 +65,38 @@ position = Vector2(1397, 565)
 sprite_frames = SubResource("SpriteFrames_ehdxi")
 animation = &"empty"
 
+[node name="ToDo" type="Area2D" parent="."]
+position = Vector2(1744, 600)
+script = ExtResource("10_df5by")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToDo"]
+shape = SubResource("RectangleShape2D_wdoff")
+
+[node name="TextureRect" type="TextureRect" parent="ToDo/CollisionShape2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -82.5
+offset_right = 92.5
+offset_bottom = 82.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_yh18e")
+
+[node name="TodoCloseup" type="TextureRect" parent="."]
+offset_left = 598.0
+offset_top = 49.0
+offset_right = 1447.0
+offset_bottom = 1013.0
+texture = ExtResource("12_4yype")
+
 [connection signal="input_event" from="Counter" to="Sugar" method="_on_counter_input_event"]
 [connection signal="input_event" from="Counter" to="Salt" method="_on_counter_input_event"]
 [connection signal="input_event" from="Coffee_machine" to="Coffee_machine" method="_on_input_event"]
 [connection signal="input_event" from="Trash" to="Sugar" method="_on_trash_input_event"]
+[connection signal="input_event" from="ToDo" to="ToDo" method="_on_input_event"]

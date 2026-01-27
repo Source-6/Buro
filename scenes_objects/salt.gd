@@ -25,10 +25,12 @@ var salt_is_selected : bool :
 var salt_placed : bool
 var salt_empty :bool
 
+var start_pos = Vector2(430,113)
 var counter_pos_salt = Vector2(460,580)
 var fill_pos_salt = Vector2(640,500)
 
 func _ready() -> void:
+	position = start_pos
 	salt_is_selected = false
 	salt_placed = false
 	salt_empty = false
@@ -47,8 +49,13 @@ func _process(delta: float) -> void:
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if Input.is_action_just_pressed("select"):
 		salt_is_selected = true
-		if salt_placed && sugar.sugar_empty && !sugar.sugar_is_selected:
+		if salt_placed && sugar.sugar_empty:
 			fill_sugar_with_salt()
+		if salt_placed && sugar.sugar_has_salt :
+			position = start_pos
+			salt_placed = false
+			salt_is_selected = false
+			
 
 
 func fill_sugar_with_salt()-> void:
