@@ -20,5 +20,6 @@ offset_top = 750.0
 offset_right = 1213.0
 offset_bottom = 952.0
 icon = ExtResource("3_g6lwx")
+flat = true
 
 [connection signal="pressed" from="Button" to="victory" method="_on_button_pressed"]

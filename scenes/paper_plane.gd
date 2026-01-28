@@ -22,7 +22,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	print(planes_made)
 	if planes_made <= 4:
 		if Input.is_action_just_pressed("fold"):
 			if mouse_in:

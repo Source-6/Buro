@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://co2fuu36kkuun"]
+[gd_scene load_steps=7 format=3 uid="uid://co2fuu36kkuun"]
 
+[ext_resource type="Script" uid="uid://68fsqvwkylmi" path="res://scenes/game.gd" id="1_iywne"]
 [ext_resource type="Script" uid="uid://dm0l7v03ybnxn" path="res://scenes/camera_2d.gd" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cpex67fwvqxk3" path="res://scenes/Office.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://gg3cfi7fcg8m" path="res://scenes/cafet.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cfqgeht44xikf" path="res://scenes/guy.tscn" id="3_lnu2h"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_iywne"]
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
 [node name="game" type="Node2D"]
+script = ExtResource("1_iywne")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -20,3 +26,16 @@ position = Vector2(1920, 0)
 [node name="Guy" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(1046, 559)
 speed = 250.0
+
+[node name="Game_Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="show_timer" type="Label" parent="."]
+z_index = 1
+offset_left = 146.0
+offset_top = 702.0
+offset_right = 147.0
+offset_bottom = 757.0
+label_settings = SubResource("LabelSettings_iywne")
+
+[connection signal="timeout" from="Game_Timer" to="." method="_on_game_timer_timeout"]

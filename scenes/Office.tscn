@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cpex67fwvqxk3"]
 
 [ext_resource type="Texture2D" uid="uid://cd5goc5x5qq5y" path="res://assets/drawings/Background.png" id="1_4vge2"]
+[ext_resource type="Texture2D" uid="uid://b4dg8mueh0dux" path="res://assets/drawings/thisone.png" id="2_3obsa"]
 [ext_resource type="Texture2D" uid="uid://brcskew0oy60j" path="res://assets/drawings/foreground.png" id="3_j7wrs"]
-[ext_resource type="Texture2D" uid="uid://c25ugy7hny7re" path="res://assets/drawings/PanelOrdi.png" id="4_j7wrs"]
 [ext_resource type="PackedScene" uid="uid://brdv1ciilmj4m" path="res://scenes_objects/mug.tscn" id="5_fws66"]
 [ext_resource type="PackedScene" uid="uid://cv6nglxlthte" path="res://scenes_objects/stack.tscn" id="6_3obsa"]
 [ext_resource type="PackedScene" uid="uid://bblddju4yfc2i" path="res://scenes_objects/paper_plane.tscn" id="6_hh0fu"]
@@ -40,19 +40,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_4vge2")
 
-[node name="secondpanel" type="TextureRect" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 309.0
-offset_top = 480.0
-offset_right = 1913.0
-offset_bottom = 1288.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("3_j7wrs")
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 483.0
+offset_top = 474.0
+offset_right = 1920.0
+offset_bottom = 1172.0
+texture = ExtResource("2_3obsa")
 
 [node name="FirstPanelArea2D" type="Area2D" parent="."]
 position = Vector2(-2, 311)
@@ -67,7 +60,7 @@ offset_left = -783.5
 offset_top = -412.5
 offset_right = 820.5
 offset_bottom = 395.5
-texture = ExtResource("4_j7wrs")
+texture = ExtResource("3_j7wrs")
 
 [node name="Mug" parent="." instance=ExtResource("5_fws66")]
 z_index = 1
@@ -85,10 +78,10 @@ z_index = 1
 anchors_preset = -1
 anchor_left = -0.07760417
 anchor_right = 0.0065104165
-offset_left = 75.0
-offset_top = 487.0
-offset_right = 252.5
-offset_bottom = 514.0
+offset_left = 65.0
+offset_top = 552.0
+offset_right = 242.5
+offset_bottom = 581.0
 scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.011764706, 0.011764706, 0.7490196, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

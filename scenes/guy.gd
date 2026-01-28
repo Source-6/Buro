@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var anim_timer: Timer = $Anim_Timer
 @onready var slow_timer: Timer = $Slow_Timer
+@onready var victory_timer: Timer = $Victory_Timer
 
 @onready var progress_bar: ProgressBar = $"../Office/ProgressBar"
 @onready var mug: Area2D = $"../Office/Mug"
@@ -34,14 +35,15 @@ var maxright = 1700
 var maxleft =50
 var has_been_hit_mug : bool
 var has_been_hit_plane : bool
-var anger_mug = 10
-var anger_plane = 5
 var can_be_hit_mug : bool
 var can_be_hit_plane : bool
 var pos_offset = 1000
 var direction = -1
 var start_pos = 1000
 
+var anger_plane = 5
+var anger_mug = 40
+var anger_coffee = 20
 
 
 func _ready() -> void:
@@ -59,9 +61,6 @@ func _ready() -> void:
 	GlobalTimer.start()
 
 func _process(delta: float) -> void:
-	if progress_bar.value >= 20:
-		lauch_victory()
-		
 	#replaced lefttoright()
 	#time += delta*speed
 	#position.x = pos_offset + (sin(time) * amplitude) 
@@ -95,9 +94,6 @@ func timeout_global_timer()->void:
 	#lauching ohter timer
 	make_coffee()
 
-func lauch_victory()->void:
-	get_tree().change_scene_to_file("res://scenes/victory.tscn")
-	
 
 func make_coffee()->void:
 	if position.x <= min_x_coffee:
@@ -129,14 +125,18 @@ func animate_collision_shape() -> void:
 
 
 func add_anger(anger_num : int) -> void:
-		progress_bar.value += anger_num
+	progress_bar.value += anger_num
+	speed = 0
+	if has_been_hit_mug :
+		guy_sprite.play("mug_hitting")
+		anim_timer.start()
+	if has_been_hit_plane:
+		guy_sprite.play("plane_hitting")
+		anim_timer.start()
+
+	if progress_bar.value >= 100:
 		speed = 0
-		if has_been_hit_mug :
-			guy_sprite.play("mug_hitting")
-			anim_timer.start()
-		if has_been_hit_plane:
-			guy_sprite.play("plane_hitting")
-			anim_timer.start()
+		victory_timer.start()
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -149,15 +149,18 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 				mug.queue_free()
 			mug.mug_is_selected = false
 
-		elif paper_plane.plane_is_selected && is_instance_valid(paper_plane):
+		elif  is_instance_valid(paper_plane) && paper_plane.plane_is_selected:
 			paper_plane.throw_plane()
 			if paper_plane.throwed:
 				has_been_hit_plane = true
-				add_anger(anger_plane)
 				if paper_plane.planes_made >=4:
 					paper_plane.queue_free()
+				add_anger(anger_plane)
 			paper_plane.plane_is_selected = false
 			has_been_hit_plane = false
+			
+		if !is_instance_valid(mug) or !is_instance_valid(paper_plane):
+			pass
 
 
 func _on_anim_timer_timeout() -> void:
@@ -174,3 +177,7 @@ func _on_anim_timer_timeout() -> void:
 
 func _on_slow_timer_timeout() -> void:
 	speed = pref_speed
+
+
+func _on_victory_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/victory.tscn")
