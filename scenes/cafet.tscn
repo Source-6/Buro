@@ -43,9 +43,10 @@ offset_bottom = 1080.0
 texture = ExtResource("1_lxqgr")
 
 [node name="Counter" parent="." instance=ExtResource("2_56h80")]
-position = Vector2(904, 604)
+position = Vector2(903, 603)
 
 [node name="Coffee_machine" parent="." instance=ExtResource("2_qb7qk")]
+position = Vector2(-12, 3)
 
 [node name="Cupboard" parent="." instance=ExtResource("3_b1tm1")]
 position = Vector2(572, 172)
@@ -89,6 +90,7 @@ size_flags_vertical = 4
 texture = ExtResource("10_yh18e")
 
 [node name="TodoCloseup" type="TextureRect" parent="."]
+visible = false
 offset_left = 598.0
 offset_top = 49.0
 offset_right = 1447.0

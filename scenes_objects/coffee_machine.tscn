@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvgj05avhjxbx"]
 
-[ext_resource type="Texture2D" uid="uid://xt43wvgi8fsu" path="res://assets/drawings/coffee.png" id="1_p5trj"]
 [ext_resource type="Script" uid="uid://dgn0gd7qxuaqi" path="res://scenes_objects/coffee_machine.gd" id="1_s3ohb"]
+[ext_resource type="Texture2D" uid="uid://df4jfkbwl7hqt" path="res://assets/drawings/coffeeplugged.png" id="2_2i250"]
 [ext_resource type="Texture2D" uid="uid://cxqot6124ekmg" path="res://assets/drawings/coffeeUnplugged.png" id="2_s3ohb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56h80"]
@@ -11,7 +11,7 @@ size = Vector2(346, 297)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_p5trj")
+"texture": ExtResource("2_2i250")
 }],
 "loop": true,
 "name": &"plugged",
